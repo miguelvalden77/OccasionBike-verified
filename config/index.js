@@ -48,7 +48,7 @@ module.exports = (app) => {
      maxAge: 10 * 60 * 1000
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/OccasionBike",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/OccasionBike-verified",
       ttl: 10 * 60
     })
   }))
