@@ -1,0 +1,20 @@
+const router = require("express").Router();
+
+/* GET home page */
+router.get("/", (req, res, next) => {
+  res.render("home");
+});
+
+const authRoutes = require("./auth.routes")
+router.use("/auth", authRoutes)
+
+const usersRoutes = require("./users.routes")
+router.use("/users", usersRoutes)
+
+const bikesRoutes = require("./bikes.routes")
+router.use("/bikes", bikesRoutes)
+
+const transactionsRoutes = require("./transaction.routes")
+router.use("/transaction", transactionsRoutes)
+
+module.exports = router;

@@ -1,0 +1,56 @@
+<h1>Perfil</h1>
+
+<h2>Bienvenid@ {{user.username}}</h2>
+ <p>{{errorMessage}}</p>
+
+<h2>All your Bikes</h2>
+<section class="allBikes">
+    {{#each user.favBikes}}
+        <div class="bike-card">
+            <div class="img-container">
+                <img src="{{this.image}}" alt="foto">
+            </div>
+            <h3>{{this.name}}</h3>
+            <h4>{{this.size}}</h4>
+            <p><span>Color: {{this.colour}}, </span><span>precio: {{this.price}}</span></p>
+            <p>{{this.description}}</p>
+            <small>Última actualización</small>
+            {{#if this.isSold}}
+                <h1>Vendida</h1>
+            {{/if}}
+        <button><a href="/users/{{this._id}}/edit">Update your bike</a></button>
+        <form action="/users/{{this._id}}/delete" method="post">
+            <button>Delete the bike</button>
+        </div>
+        </form>
+    {{/each}}
+    </section>
+    <h1>COMPRADAS</h1>
+    <section class="allBikes">
+        <div class="bike-card">
+        {{#each user2.boughtBikes}}
+            <div class="img-container">
+                <img src="{{this.image}}" alt="foto">
+            </div>
+            <h2>{{this.name}}</h2>
+            <h3>{{this.weight}}</h3>
+            <h3>{{this.price}}</h3>
+            <p>{{this.description}}</p>
+        {{/each}}
+        </div>
+    </section>
+    <section>
+        <h1>VENDIDAS</h1>
+        {{#each user3.soldBikes}}
+            <div class="img-container">
+                <img src="{{this.image}}" alt="foto">
+            </div>
+            <h2>{{this.name}}</h2>
+            <h3>{{this.weight}}</h3>
+            <h3>{{this.price}}</h3>
+            <p>{{this.description}}</p>
+        {{/each}}
+    </section>
+
+
+<button><a href="/users/create">Sell a Bike</a></button>

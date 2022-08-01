@@ -1,0 +1,37 @@
+<h1>Add bikes</h1>
+
+  
+<form action="/users/create" method="POST" enctype="multipart/form-data">
+
+  <label for="name">Nombre </label>
+  <input type="text" name="name">
+  <br>
+  <label for="weight">Peso </label>
+  <input type="number" name="weight">
+  <br>
+  <label> Talla
+    <select name="size" multipe="true">
+         <option>infantil</option>
+         <option>adolescente</option>
+         <option>adulto</option>
+  </select>
+  </label>
+  <label for="colour">Color </label>
+  <input type="text" name="colour">
+  <br>
+  <label for="price">Precio </label>
+  <input type="number" name="price">
+  <br>
+  
+  <label for="image">
+    <input type="file" name="image">
+  </label>
+  <br>
+
+  <label for="description">
+    <textarea name="description" cols="30" rows="10" maxlength="150"></textarea>
+  </label>
+
+  <button>Agregar bikes</button>
+
+</form>

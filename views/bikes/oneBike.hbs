@@ -1,0 +1,26 @@
+{{!-- nav --}}
+
+{{!-- search --}}
+
+<main class="oneBike">
+<h1 class="title"> Details of bike</h1>
+
+<article class="bike-card">
+  <div class="img-container">
+    <img src="{{oneBike.image}}" alt="bike">
+  </div>
+   <h3 class="bike-title"> {{oneBike.name}}</h3>
+    <p class="info-container"><span class="bike-info">{{oneBike.price}} €</span><span class="bike-info">{{oneBike.weight}} kg</span><span class="bike-info">{{oneBike.size}}</span></p>
+   <p class="description"> {{oneBike.description}}</p>
+   <p class="text-center">Owner: {{oneBike.owner.username}}</p>
+   <div class="button-container">
+    <button class="details-button"><a class="details-anchor" href="/transaction/{{bikeId}}">contacto</a></button>
+   </div>
+</article>
+
+</main>
+
+{{!-- footer --}}
+
+{{!--   <label for="description" class="">Descripción</label>
+  <textarea class="" id="" rows="5" cols="30"></textarea> --}}

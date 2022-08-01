@@ -1,0 +1,28 @@
+<h1>Confirm transaction</h1>
+<p>{{errorMessage}}</p>
+<div>
+
+    <h2> Details of bike</h2>
+   {{!-- <img src="{{bike.image}}" alt="bike"> --}}
+   <h3> {{bike.name}}</h3>
+   <h4> {{bike.weight}}</h4>
+   <h4> {{bike.colour}}</h4>
+   <p> {{bike.description}}</p>
+   <h5>{{bike.price}}</h5>
+   <h5>Owner: {{bike.owner.username}}</h5>
+
+
+   <form action="/transaction/{{bike._id}}" method="post">
+    <label>Bike
+        <input type="text" value="{{bike.name}}" readonly>
+    </label>
+
+    <label> Owner
+        <input type="text" value="{{bike.owner.username}}" name="owner" readonly>
+    </label>
+
+   <button>Comprar</button>
+   </form>
+
+</div>
+
