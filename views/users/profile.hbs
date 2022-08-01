@@ -1,7 +1,11 @@
-<h1>Perfil</h1>
-
-<h2>Bienvenid@ {{user.username}}</h2>
+<h1 class="main-title text-center">Bienvenid@ a tu perfil {{user.username}}</h1>
  <p>{{errorMessage}}</p>
+
+<div class="banner flex">
+    <a href="#vendidas"><button>Bicis vendidas</button></a>
+    <a href="#compradas"><button>Bicis compradas</button></a>
+    <a href="#sell"><button>Vende una bici</button></a>
+</div>
 
 <h2>All your Bikes</h2>
 <section class="allBikes">
@@ -25,7 +29,7 @@
         </form>
     {{/each}}
     </section>
-    <h1>COMPRADAS</h1>
+    <h1 id="compradas" class="text-center">COMPRADAS</h1>
     <section class="allBikes">
         <div class="bike-card">
         {{#each user2.boughtBikes}}
@@ -39,18 +43,20 @@
         {{/each}}
         </div>
     </section>
-    <section>
-        <h1>VENDIDAS</h1>
+        <h1 id="vendidas" class="text-center">VENDIDAS</h1>
+    <section class="allBikes">
         {{#each user3.soldBikes}}
-            <div class="img-container">
-                <img src="{{this.image}}" alt="foto">
+            <div class="bike-card">
+                <div class="img-container">
+                    <img src="{{this.image}}" alt="foto">
+                </div>
+                <h2>{{this.name}}</h2>
+                <h3>{{this.weight}}</h3>
+                <h3>{{this.price}}</h3>
+                <p>{{this.description}}</p>
             </div>
-            <h2>{{this.name}}</h2>
-            <h3>{{this.weight}}</h3>
-            <h3>{{this.price}}</h3>
-            <p>{{this.description}}</p>
         {{/each}}
     </section>
 
 
-<button><a href="/users/create">Sell a Bike</a></button>
+<a href="/users/create"><button id="sell">Sell a Bike</button></a>
