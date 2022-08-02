@@ -30,7 +30,7 @@ router.get("/profile/compradas", isLogged, async (req, res, next)=>{
     const user = await User.findById(_id).populate("boughtBikes")
 
     res.render("users/compradas", {user})
-})
+}) 
 
 router.get('/admin-Profile', isAdmin, async (req, res, next)=>{
     const {_id} = req.session.user
