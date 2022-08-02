@@ -1,6 +1,5 @@
 const router = require("express").Router()
 const bcrypt = require("bcryptjs")
-const { request } = require("express")
 const User = require("../models/User.model")
 
 router.get("/register", (req, res, next)=> res.render("auth/register"))
@@ -58,18 +57,18 @@ router.post("/login", async (req, res, next)=>{
 
     const {password, username} = req.body
 
-    if(username === "" || password === ""){
-        res.render("auth/login", {errorMessage: "Debes rellenar todos los campos"})
-        return
-    }
-
-    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-    if(passwordRegex.test(password) === false){
-        res.render("auth/login", {errorMessage: "La contraseña debe tener al menos 8 caracteres, al menos 1 minúscula, 1 mayúscula y 1 número"})
-        return 
-    }
-
     try{
+
+        if(username === "" || password === ""){
+            res.render("auth/login", {errorMessage: "Debes rellenar todos los campos"})
+            return
+        }
+    
+        let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+        if(passwordRegex.test(password) === false){
+            res.render("auth/login", {errorMessage: "La contraseña debe tener al menos 8 caracteres, al menos 1 minúscula, 1 mayúscula y 1 número"})
+            return 
+        }
 
         const foundUser = await User.findOne({username})
         if(foundUser === null){
@@ -77,9 +76,10 @@ router.post("/login", async (req, res, next)=>{
             return
         }
 
-        const passwordValidated = bcrypt.compare(password, foundUser.password)
+        const passwordValidated = await bcrypt.compare(password, foundUser.password)
 
-        if(passwordValidated === false){
+        if(!passwordValidated){
+            console.log(passwordValidated)
             res.render("auth/login", {errorMessage: "Contraseña incorrecta"})
             return
         } 
