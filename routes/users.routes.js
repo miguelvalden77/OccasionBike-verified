@@ -16,6 +16,22 @@ router.get("/profile", isLogged, async (req, res, next)=>{
     res.render("users/profile", {user, user2, user3})
 })
 
+router.get("/profile/vendidas", isLogged, async (req, res, next)=>{
+    const {_id} = req.session.user
+
+    const user3 = await User.findById(_id).populate("soldBikes")
+
+    res.render("users/vendidas", {user3})
+})
+
+router.get("/profile/compradas", isLogged, async (req, res, next)=>{
+    const {_id} = req.session.user
+
+    const user = await User.findById(_id).populate("boughtBikes")
+
+    res.render("users/compradas", {user})
+})
+
 router.get('/admin-Profile', isAdmin, async (req, res, next)=>{
     const {_id} = req.session.user
     
@@ -32,7 +48,8 @@ router.get('/admin-Profile', isAdmin, async (req, res, next)=>{
 
 router.get('/create', isLogged, async (req, res, next) => {
     try {
-       res.render('users/add-bikes')
+        const user = await User.findById(req.session.user._id).populate("favBikes")
+        res.render('users/add-bikes', {user})
     } catch (error) {
        next(error)
     }

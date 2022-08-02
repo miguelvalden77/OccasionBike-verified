@@ -76,6 +76,7 @@ nav a{
 .main-title{
   word-spacing: 0.6rem;
   padding-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .between {
@@ -84,12 +85,14 @@ nav a{
 
 .allBikes {
   display: flex;
+  padding-bottom: 2rem;
 }
 
 .banner{
   display: flex;
   justify-content: space-evenly;
   padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .banner button{
@@ -226,3 +229,16 @@ nav a{
 .filter-container button {
   padding: 0.5rem 1rem;
 }
+
+#compradas{
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.sell{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
