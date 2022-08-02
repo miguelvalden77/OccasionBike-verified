@@ -13,6 +13,9 @@
     <p class="info-container"><span class="bike-info">{{oneBike.price}} €</span><span class="bike-info">{{oneBike.weight}} kg</span><span class="bike-info">{{oneBike.size}}</span></p>
    <p class="description"> {{oneBike.description}}</p>
    <p class="text-center">Owner: {{oneBike.owner.username}}</p>
+   {{#if oneBike.isSold}}
+      <p>Vendida</p>
+   {{/if}}
    <div class="button-container">
     <button class="details-button"><a class="details-anchor" href="/transaction/{{bikeId}}">contacto</a></button>
    </div>
