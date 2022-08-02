@@ -16,14 +16,14 @@ router.get("/profile", isLogged, async (req, res, next)=>{
     res.render("users/profile", {user, user2, user3})
 })
 
-router.get('/admin-Profile', isAdmin, async (req, res, next)=>{
+router.get('/admin-profile', isLogged, isAdmin, async (req, res, next)=>{
     const {_id} = req.session.user
     
     try {
         const admin = await User.findById(_id)
         const allUsers = await User.find({role : "user"})
         console.log(allUsers);
-        res.render("users/admin-Profile.hbs", {admin, allUsers})
+        res.render("users/admin-profile.hbs", {admin, allUsers})
         
     } catch (error) {
         next(error)
@@ -60,8 +60,6 @@ router.get('/admin-users/:userId', isLogged, isAdmin, async (req, res, next) => 
         next(error)
     }
 })
-
-
 
  
  router.post('/create', imageLoader.single("image"), async (req, res, next) => {
