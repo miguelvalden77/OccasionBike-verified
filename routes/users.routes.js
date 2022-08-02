@@ -17,6 +17,35 @@ router.get("/profile", isLogged, async (req, res, next)=>{
     res.render("users/profile", {user, user2, user3})
 })
 
+router.get("/profile/vendidas", isLogged, async (req, res, next)=>{
+    const {_id} = req.session.user
+
+    const user3 = await User.findById(_id).populate("soldBikes")
+
+    res.render("users/vendidas", {user3})
+})
+
+router.get("/profile/compradas", isLogged, async (req, res, next)=>{
+    const {_id} = req.session.user
+
+    const user = await User.findById(_id).populate("boughtBikes")
+
+    res.render("users/compradas", {user})
+}) 
+
+router.get('/admin-Profile', isAdmin, async (req, res, next)=>{
+    const {_id} = req.session.user
+    
+    try {
+        const admin = await User.findById(_id)
+        const allUsers = await User.find({role : "user"})
+        console.log(allUsers);
+        res.render("users/admin-Profile.hbs", {admin, allUsers})
+        
+    } catch (error) {
+        next(error)
+    }
+})
 
 router.get('/create', isLogged, async (req, res, next) => {
     try {

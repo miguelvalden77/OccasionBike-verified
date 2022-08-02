@@ -17,7 +17,11 @@
       <p>Vendida</p>
    {{/if}}
    <div class="button-container">
+    {{#if oneBike.isSold}}
+    <button disabled class="details-button">Vendida</button>
+    {{else}}
     <button class="details-button"><a class="details-anchor" href="/transaction/{{bikeId}}">contacto</a></button>
+    {{/if}}
    </div>
 </article>
 
