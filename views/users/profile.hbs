@@ -2,61 +2,36 @@
  <p>{{errorMessage}}</p>
 
 <div class="banner flex">
-    <a href="#vendidas"><button>Bicis vendidas</button></a>
-    <a href="#compradas"><button>Bicis compradas</button></a>
-    <a href="#sell"><button>Vende una bici</button></a>
+    <a href="/users/profile/vendidas"><button>Bicis vendidas</button></a>
+    <a href="/users/profile/compradas"><button>Bicis compradas</button></a>
+    <a href="/users/create"><button>Vende una bici</button></a>
 </div>
 
-<h2>All your Bikes</h2>
+<h1 class="main-title text-center">Todas tus bicis</h1>
+    {{#if user.favBikes}}
 <section class="allBikes">
-    {{#each user.favBikes}}
-        <div class="bike-card">
-            <div class="img-container">
-                <img src="{{this.image}}" alt="foto">
-            </div>
-            <h3>{{this.name}}</h3>
-            <h4>{{this.size}}</h4>
-            <p><span>Color: {{this.colour}}, </span><span>precio: {{this.price}}</span></p>
-            <p>{{this.description}}</p>
-            <small>Última actualización</small>
-            {{#if this.isSold}}
-                <h1>Vendida</h1>
-            {{/if}}
-        <button><a href="/users/{{this._id}}/edit">Update your bike</a></button>
-        <form action="/users/{{this._id}}/delete" method="post">
-            <button>Delete the bike</button>
-        </div>
-        </form>
-    {{/each}}
-    </section>
-    <h1 id="compradas" class="text-center">COMPRADAS</h1>
-    <section class="allBikes">
-        <div class="bike-card">
-        {{#each user2.boughtBikes}}
-            <div class="img-container">
-                <img src="{{this.image}}" alt="foto">
-            </div>
-            <h2>{{this.name}}</h2>
-            <h3>{{this.weight}}</h3>
-            <h3>{{this.price}}</h3>
-            <p>{{this.description}}</p>
-        {{/each}}
-        </div>
-    </section>
-        <h1 id="vendidas" class="text-center">VENDIDAS</h1>
-    <section class="allBikes">
-        {{#each user3.soldBikes}}
+        {{#each user.favBikes}}
             <div class="bike-card">
                 <div class="img-container">
                     <img src="{{this.image}}" alt="foto">
                 </div>
-                <h2>{{this.name}}</h2>
-                <h3>{{this.weight}}</h3>
-                <h3>{{this.price}}</h3>
+                <h3>{{this.name}}</h3>
+                <h4>{{this.size}}</h4>
+                <p><span>Color: {{this.colour}}, </span><span>precio: {{this.price}}</span></p>
                 <p>{{this.description}}</p>
+                <small>Última actualización</small>
+                {{#if this.isSold}}
+                    <h1>Vendida</h1>
+                {{/if}}
+            <button><a href="/users/{{this._id}}/edit">Update your bike</a></button>
+            <form action="/users/{{this._id}}/delete" method="post">
+                <button>Delete the bike</button>
             </div>
+            </form>
         {{/each}}
     </section>
+    {{else}}
+    <p class="text-center">Aún subido ninguna bici</p>
+    {{/if}}
+    
 
-
-<a href="/users/create"><button id="sell">Sell a Bike</button></a>

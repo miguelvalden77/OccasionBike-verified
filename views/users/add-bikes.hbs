@@ -1,5 +1,19 @@
 <h1>Add bikes</h1>
 
+<div class="banner flex">
+    <a href="/users/profile/vendidas"><button>Bicis vendidas</button></a>
+    <a href="/users/profile"><button>Volver al perfil</button></a>
+    <a href="/users/profile/compradas"><button>Bicis compradas</button></a>
+</div>
+
+<section class="sell">
+    {{#if user.favBikes}}
+    <h3>Vende otra bici !!!</h3>
+    {{else}}
+    <h3>Pon a la venta tu primera bici</h3>
+    {{/if}}
+    <a href="/users/create"><button class="sell-button" id="sell">Sell a Bike</button></a>
+</section>
   
 <form action="/users/create" method="POST" enctype="multipart/form-data">
 
