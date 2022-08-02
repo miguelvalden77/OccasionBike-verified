@@ -23,7 +23,7 @@ const capitalized = require("./utils/capitalized");
 const projectName = "OccasionBike";
 
 app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
-app.locals.isUserActive = false
+// app.locals.isUserActive = false
 
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");

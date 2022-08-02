@@ -1,5 +1,9 @@
 const router = require("express").Router();
 
+const { localsUpdate } = require("../middlewares/auth")
+
+router.use(localsUpdate)
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("home");

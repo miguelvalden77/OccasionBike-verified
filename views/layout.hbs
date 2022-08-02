@@ -20,15 +20,18 @@
             <img src="/images/logo.jpg" alt="logo">
          </div>
         <nav>
+         <a href="/">Home</a>
          {{#if isUserActive}}
-            <a href="/">Home</a>
             <a href="/bikes/allBikes">Bikes</a>
-            <a href="/users/profile">Perfil</a>
+            {{#if isUserAdmin}}
+               <a href="/users/admin-profile">Admin</a>
+            {{else}}
+               <a href="/users/profile">Perfil</a>
+            {{/if}}
             <a href="/auth/logout">Log out</a>
          {{else}}
             <a href="/auth/login">Login</a>
             <a href="/auth/register">Register</a>
-            <a href="/">Home</a>
             <a href="/bikes/allBikes">Bikes</a>
          {{/if}}
         </nav>

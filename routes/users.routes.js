@@ -4,6 +4,7 @@ const router = require("express").Router()
 const imageLoader = require("../middlewares/multer")
 const Transaction = require("../models/Transaction.model")
 const {isLogged, isAdmin} = require("../middlewares/auth")
+const { findById } = require("../models/Transaction.model")
 
 
 router.get("/profile", isLogged, async (req, res, next)=>{
@@ -43,6 +44,16 @@ router.get('/admin-users/:userId', isLogged, isAdmin, async (req, res, next) => 
     try {
         const user = await User.findById(userId)
         res.render("users/admin-users.hbs", {user})    
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.post('/admin-users/:userId/delete', isLogged, isAdmin, async(req, res, next) => {
+    const {userId} = req.params
+    try {
+        await User.findByIdAndUpdate(userId, {deleteUser: true}) 
+        res.redirect('/users/admin-profile')       
     } catch (error) {
         next(error)
     }

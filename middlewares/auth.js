@@ -20,7 +20,24 @@ const isAdmin = (req, res, next) => {
     }
 }
 
+function localsUpdate(req, res, next) {
+    if (req.session.user === undefined) {
+      // usuario no está logeado
+      res.locals.isUserActive = false;
+      res.locals.isUserAdmin = false;
+    } else if (req.session.user.role === "admin") {
+      //  usuario activo y admin
+      res.locals.isUserActive = true;
+      res.locals.isUserAdmin = true;
+    } else if (req.session.user.role === "user") {
+      res.locals.isUserActive = true;
+      res.locals.isUserAdmin = false;
+    }
+    next()
+  }
+
 module.exports = {
     isLogged,
-    isAdmin
+    isAdmin,
+    localsUpdate
 }
