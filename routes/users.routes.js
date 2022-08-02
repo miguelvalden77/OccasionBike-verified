@@ -37,6 +37,32 @@ router.get('/create', isLogged, async (req, res, next) => {
        next(error)
     }
  })
+
+
+ router.get('/admin-profile', isLogged, isAdmin, async (req, res, next)=>{
+    const {_id} = req.session.user
+    try {
+        const admin = await User.findById(_id)
+        const allUsers = await User.find({role : "user"})
+        res.render("users/admin-profile.hbs", {admin, allUsers})
+
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get('/admin-users/:userId', isLogged, isAdmin, async (req, res, next) => {
+    const {userId} = req.params
+    try {
+        const user = await User.find()
+        res.render("users/admin-users.hbs", {user})    
+    } catch (error) {
+        next(error)
+    }
+})
+
+
+
  
  router.post('/create', imageLoader.single("image"), async (req, res, next) => {
     const { name, weight, size, colour, price, description} = req.body
