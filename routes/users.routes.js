@@ -55,8 +55,7 @@ router.get('/create', isLogged, async (req, res, next) => {
     }
  })
 
-
- router.get('/admin-profile', isLogged, isAdmin, async (req, res, next)=>{
+router.get('/admin-profile', isLogged, isAdmin, async (req, res, next)=>{
     const {_id} = req.session.user
     try {
         const admin = await User.findById(_id)
@@ -71,14 +70,12 @@ router.get('/create', isLogged, async (req, res, next) => {
 router.get('/admin-users/:userId', isLogged, isAdmin, async (req, res, next) => {
     const {userId} = req.params
     try {
-        const user = await User.find()
+        const user = await User.findById(userId)
         res.render("users/admin-users.hbs", {user})    
     } catch (error) {
         next(error)
     }
 })
-
-
 
  
  router.post('/create', imageLoader.single("image"), async (req, res, next) => {
