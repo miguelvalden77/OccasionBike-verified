@@ -16,7 +16,7 @@ router.get("/profile", isLogged, async (req, res, next)=>{
     res.render("users/profile", {user, user2, user3})
 })
 
-router.get('/admin-Profile', isLogged, isAdmin, async (req, res, next)=>{
+router.get('/admin-Profile', isAdmin, async (req, res, next)=>{
     const {_id} = req.session.user
     
     try {
