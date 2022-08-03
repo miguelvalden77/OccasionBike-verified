@@ -263,4 +263,7 @@ nav a{
   padding: 2rem 1rem;
 }
 
-
+.errorMessage{
+  padding: 1rem 0;
+  color: red;
+}
