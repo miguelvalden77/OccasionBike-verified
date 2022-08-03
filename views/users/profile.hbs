@@ -1,5 +1,7 @@
 <h1 class="main-title text-center">Bienvenid@ a tu perfil {{user.username}}</h1>
- <p>{{errorMessage}}</p>
+ {{#if user.deleteUser}}
+    <p>{{banMessage}}</p>
+ {{/if}}
 
 <div class="banner flex">
     <a href="/users/profile/vendidas"><button>Bicis vendidas</button></a>

@@ -8,6 +8,8 @@ router.post("/register", async (req, res, next)=>{
 
     const {username, email, password} = req.body
 
+    const usernameOk = username.trim().toLowerCase()
+
     if(username === "" || email === "" || password === ""){
         res.render("auth/register", {errorMessage: "Debes llenar todos los campos"})
         return 
@@ -37,7 +39,7 @@ router.post("/register", async (req, res, next)=>{
         const hashedPassword = await bcrypt.hash(password, salt)
 
         await User.create({
-            username,
+            username: usernameOk,
             email,
             password: hashedPassword
         })
@@ -57,6 +59,8 @@ router.post("/login", async (req, res, next)=>{
 
     const {password, username} = req.body
 
+    const usernameOk = username.trim().toLowerCase()
+
     try{
 
         if(username === "" || password === ""){
@@ -70,7 +74,7 @@ router.post("/login", async (req, res, next)=>{
             return 
         }
 
-        const foundUser = await User.findOne({username})
+        const foundUser = await User.findOne({username: usernameOk})
         if(foundUser === null){
             res.render("auth/login", {errorMessage: "Usuario no encontrado"})
             return
@@ -93,7 +97,13 @@ router.post("/login", async (req, res, next)=>{
         req.app.locals.isUserActive = true
 
         req.session.save(()=>{
-            res.redirect("/users/profile")})
+
+            if(req.session.user.role === "admin"){
+                res.redirect("/users/admin-profile") 
+                return
+            }
+            res.redirect("/users/profile") 
+        })
 
     }
     catch(error){
