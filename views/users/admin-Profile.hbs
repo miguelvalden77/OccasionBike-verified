@@ -1,8 +1,11 @@
-<h1> profile de Admin {{admin.username}}</h1> 
+<h1 class="text-center"> profile de Admin {{admin.username}}</h1> 
 
 <h2> Lista de usuarios registrados</h2>
 {{#each allUsers}}
 <li>
    <a href="/users/admin-users/{{this._id}}">{{this.username}}</a>
+   {{#if this.deleteUser}}
+      <small class="error">(banned)</small>
+   {{/if}}
 </li>
 {{/each}}
