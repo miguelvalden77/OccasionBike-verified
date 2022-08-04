@@ -88,9 +88,15 @@ router.get('/:bikeId', isLogged, async (req, res, next) => {
    const { bikeId } = req.params
    try {
       const allComments = await Comment.find({bike: bikeId}).populate('creator')
-      console.log(allComments);
+      const allCommentsCloned = JSON.parse(JSON.stringify(allComments))
+      allCommentsCloned.forEach((eachComment) => {
+         eachComment.isMyComment = false  
+         if(req.session.user._id == eachComment.creator._id)
+            eachComment.isMyComment = true
+      })
+      console.log(allCommentsCloned);
       const oneBike = await Bike.findById(bikeId).populate("owner")
-      res.render('bikes/oneBike.hbs', {oneBike, bikeId, allComments})
+      res.render('bikes/oneBike.hbs', {oneBike, bikeId, allCommentsCloned})
    } catch (error) {
       next(error)
    }

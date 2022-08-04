@@ -21,9 +21,13 @@
     </form>
   </div>
   <div>
-
-    {{#each allComments}}
-      <p>{{this.creator.username}} wrote: {{this.text}}</p>
+      {{#each allCommentsCloned}}
+        <p>{{this.creator.username}} wrote: {{this.text}}</p>
+        {{#if this.isMyComment }}
+        <form action="/comments/{{this._id}}/{{this.bike}}/delete" method="post" style="display: inline">
+          <button style="background-color: red">delete</button>
+        </form>
+        {{/if}}
     {{/each}}
   </div>
 
