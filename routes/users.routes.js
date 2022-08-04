@@ -4,7 +4,6 @@ const router = require("express").Router()
 const imageLoader = require("../middlewares/multer")
 const Transaction = require("../models/Transaction.model")
 const {isLogged, isAdmin} = require("../middlewares/auth")
-const { findById } = require("../models/Transaction.model")
 
 
 router.get("/profile", isLogged, async (req, res, next)=>{
@@ -33,20 +32,6 @@ router.get("/profile/compradas", isLogged, async (req, res, next)=>{
     res.render("users/compradas", {user})
 }) 
 
-router.get('/admin-Profile', isAdmin, async (req, res, next)=>{
-    const {_id} = req.session.user
-    
-    try {
-        const admin = await User.findById(_id)
-        const allUsers = await User.find({role : "user"})
-        console.log(allUsers);
-        res.render("users/admin-Profile.hbs", {admin, allUsers})
-        
-    } catch (error) {
-        next(error)
-    }
-})
-
 router.get('/create', isLogged, async (req, res, next) => {
     try {
         const user = await User.findById(req.session.user._id).populate("favBikes")
@@ -56,7 +41,8 @@ router.get('/create', isLogged, async (req, res, next) => {
     }
  })
 
-router.get('/admin-profile', isLogged, isAdmin, async (req, res, next)=>{
+
+router.get('/admin-profile', isAdmin, async (req, res, next)=>{
     const {_id} = req.session.user
     try {
         const admin = await User.findById(_id)
@@ -68,7 +54,7 @@ router.get('/admin-profile', isLogged, isAdmin, async (req, res, next)=>{
     }
 })
 
-router.get('/admin-users/:userId', isLogged, isAdmin, async (req, res, next) => {
+router.get('/admin-users/:userId', isAdmin, async (req, res, next) => {
     const {userId} = req.params
     try {
         const user = await User.findById(userId)
@@ -78,7 +64,7 @@ router.get('/admin-users/:userId', isLogged, isAdmin, async (req, res, next) => 
     }
 })
 
-router.post('/admin-users/:userId/delete', isLogged, isAdmin, async(req, res, next) => {
+router.post('/admin-users/:userId/delete', isAdmin, async(req, res, next) => {
     const {userId} = req.params
     try {
         await User.findByIdAndUpdate(userId, {deleteUser: true}) 
