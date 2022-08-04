@@ -1,31 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap');
 
-:root{
-
-  --bg-main-color: white;
-  --bg-secondary-color: rgb(192, 190, 190);
-  --bg-tertiary-color: rgb(142, 140, 140);
-
-  --text-main-color: rgb(25, 25, 25);
-  --text-secondary-color: rgb(40, 40, 40);
-  --text-tertiary-color: rgb(61, 61, 61);
-
-  --border-main-color: rgb(40, 38, 38);
-  --border-secondary-color: rgb(79, 78, 78);
-
-}
-
 *{
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-
 body {
   padding: 50px;
   font: 14px "Kanit", "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: var(--bg-main-color);
+  background-color: white;
+}
+
+.main-header{
+  background-color: white;
+}
+
+.block{
+  display: flex;
+  justify-content: center;
+}
+
+.OccasionBike{
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.home-button{
+  margin: auto;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  transform: scale(1);
+  transition: transform 0.4s;
+}
+
+.home-button:hover{
+  transform: scale(1.1);
+  transition: transform 0.4s;
+}
+
+.delete{
+  color: red;
 }
 
 a {
@@ -75,9 +91,23 @@ nav{
   justify-content: space-between;
 }
 
+.marb-2{
+  margin-bottom: 4rem !important;
+}
+
 nav a{
   margin-right: 0.5rem;
 
+}
+
+.p-3{
+  padding: 3rem;
+}
+
+.user{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .main-title{
@@ -205,11 +235,33 @@ nav a{
   display: block;
 }
 
-.button-container {
+.btn{
+  padding: 0.5rem 0.75rem;
+}
+
+.button-container-down {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-evenly;
   padding-top: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+p{
+  margin-bottom: 0;
+}
+
+.green{
+  color: green;
 }
 
 .details-button {

@@ -94,8 +94,15 @@ router.post('/admin-users/:userId/autorize', isLogged, isAdmin, async(req, res, 
     const {_id} = req.session.user
 
     try{
-        const bici = await Bike.create({name, weight, size, colour, price, image: req.file.path, owner: _id, description})
-        await User.findByIdAndUpdate(_id, {$addToSet:{favBikes: bici._id}})
+        const user = await User.findById(_id)
+
+        if(user.deleteUser === false){
+
+            const bici = await Bike.create({name, weight, size, colour, price, image: req.file.path, owner: _id, description})
+            await User.findByIdAndUpdate(_id, {$addToSet:{favBikes: bici._id}})
+
+            res.redirect("/users/profile")
+        }
         
         res.redirect('/users/profile')
     }
