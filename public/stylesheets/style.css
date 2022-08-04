@@ -91,6 +91,10 @@ nav{
   justify-content: space-between;
 }
 
+.marb-2{
+  margin-bottom: 4rem !important;
+}
+
 nav a{
   margin-right: 0.5rem;
 
@@ -98,6 +102,12 @@ nav a{
 
 .p-3{
   padding: 3rem;
+}
+
+.user{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .main-title{
@@ -244,6 +254,14 @@ nav a{
   justify-content: space-evenly;
   padding-top: 0.5rem;
   margin-bottom: 1rem;
+}
+
+p{
+  margin-bottom: 0;
+}
+
+.green{
+  color: green;
 }
 
 .details-button {
