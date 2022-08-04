@@ -10,15 +10,6 @@ const isLogged = (req, res, next)=>{
 
 }
 
-// const isUserDelete = async (req, res, next)=>{
-  
-//   try {
-//    await findById
-//  } catch (error) {
-//    next (error)
-//  }
-// }
-
 const isAdmin = (req, res, next) => {
     if (req.session.user.role === "admin") {
         next()

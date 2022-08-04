@@ -21,4 +21,7 @@ router.use("/bikes", bikesRoutes)
 const transactionsRoutes = require("./transaction.routes")
 router.use("/transaction", transactionsRoutes)
 
+const commentsRoutes = require('./comments.routes')
+router.use("/comments", commentsRoutes )
+
 module.exports = router;

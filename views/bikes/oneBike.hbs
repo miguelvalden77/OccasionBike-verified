@@ -13,6 +13,20 @@
     <p class="info-container"><span class="bike-info">{{oneBike.price}} €</span><span class="bike-info">{{oneBike.weight}} kg</span><span class="bike-info">{{oneBike.size}}</span></p>
    <p class="description"> {{oneBike.description}}</p>
    <p class="text-center">Owner: {{oneBike.owner.username}}</p>
+ 
+  <div>
+    <form action="/comments/{{oneBike._id}}/create" method="post">
+      <p style="text-align: center"> <textarea style="inline-block" name="message" placeholder="leave your comment here"></textarea>
+      <button>Send</button></p>
+    </form>
+  </div>
+  <div>
+
+    {{#each allComments}}
+      <p>{{this.creator.username}} wrote: {{this.text}}</p>
+    {{/each}}
+  </div>
+
    {{#if oneBike.isSold}}
       <p class="text-center">Vendida</p>
    {{/if}}
@@ -24,5 +38,6 @@
     {{/if}}
    </div>
 </article>
+
 
 </main>

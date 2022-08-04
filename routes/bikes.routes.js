@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { isLogged } = require('../middlewares/auth')
 const Bike = require('../models/Bike.model')
 const User = require('../models/User.model')
+const Comment = require ('../models/Comment.model.js')
 
 
 // GET "/bikes" => lista todas las bicicletas por name
@@ -86,8 +87,10 @@ router.post('/allBikes/z-a', async (req, res, next) => {
 router.get('/:bikeId', isLogged, async (req, res, next) => {
    const { bikeId } = req.params
    try {
+      const allComments = await Comment.find({bike: bikeId}).populate('creator')
+      console.log(allComments);
       const oneBike = await Bike.findById(bikeId).populate("owner")
-      res.render('bikes/oneBike.hbs', {oneBike, bikeId})
+      res.render('bikes/oneBike.hbs', {oneBike, bikeId, allComments})
    } catch (error) {
       next(error)
    }
