@@ -40,6 +40,10 @@ body {
   transition: transform 0.4s;
 }
 
+.delete{
+  color: red;
+}
+
 a {
   color: #00b7ff;
   text-decoration: none;
@@ -90,6 +94,10 @@ nav{
 nav a{
   margin-right: 0.5rem;
 
+}
+
+.p-3{
+  padding: 3rem;
 }
 
 .main-title{
