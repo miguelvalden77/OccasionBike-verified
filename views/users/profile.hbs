@@ -17,19 +17,20 @@
                 <div class="img-container">
                     <img src="{{this.image}}" alt="foto">
                 </div>
-                <h3>{{this.name}}</h3>
-                <h4>{{this.size}}</h4>
-                <p><span>Color: {{this.colour}}, </span><span>precio: {{this.price}}</span></p>
-                <p>{{this.description}}</p>
-                <small>Última actualización</small>
+                <h3 class="bike-title">{{this.name}}</h3>
+                <p class="info-container"> <span class="bike-info">{{this.size}}</span><span class="bike-info">{{this.colour}}</span><span class="bike-info"> {{this.price}}</span></p>
+                <p class="description"> {{this.description}}</p>
+                {{!-- <small>Última actualización</small> --}}
                 {{#if this.isSold}}
-                    <h1>Vendida</h1>
+                    <small class="text-center">Vendida</small>
                 {{/if}}
-            <button><a href="/users/{{this._id}}/edit">Update your bike</a></button>
+            <div class="button-container-down">
+                <button class="details-button"> <a href="/users/{{this._id}}/edit">Update your bike</a></button>
             <form action="/users/{{this._id}}/delete" method="post">
-                <button>Delete the bike</button>
+                <button class="details-button">Delete the bike</button>
             </div>
             </form>
+            </div>
         {{/each}}
     </section>
     {{else}}

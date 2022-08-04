@@ -40,6 +40,7 @@ module.exports = (app) => {
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
 
+
   app.use(session({
     secret: process.env.SECRET,
     resave: false, 
