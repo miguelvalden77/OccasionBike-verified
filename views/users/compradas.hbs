@@ -5,9 +5,9 @@
 </div>
 
 <h1 id="compradas" class="text-center">Bicis compradas</h1>
-        {{#if user2.boughtBikes}}
+        {{#if user.boughtBikes}}
     <section class="allBikes">
-        {{#each user2.boughtBikes}}
+        {{#each user.boughtBikes}}
             <div class="bike-card">
                 <div class="img-container">
                     <img src="{{this.image}}" alt="foto">

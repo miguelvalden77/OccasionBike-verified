@@ -2,7 +2,6 @@ const User = require("../models/User.model")
 const Bike = require("../models/Bike.model")
 const router = require("express").Router()
 const imageLoader = require("../middlewares/multer")
-const Transaction = require("../models/Transaction.model")
 const {isLogged, isAdmin} = require("../middlewares/auth")
 
 
@@ -13,7 +12,12 @@ router.get("/profile", isLogged, async (req, res, next)=>{
     const user2 = await User.findById(_id).populate("boughtBikes")
     const user3 = await User.findById(_id).populate("soldBikes")
 
-    res.render("users/profile", {user, user2, user3})
+    let banMessage
+    if (user.deleteUser === true){
+        banMessage = "Estás baneado no puedes subir ninguna bici más"
+    }
+
+    res.render("users/profile", {user, user2, user3, banMessage})
 })
 
 router.get("/profile/vendidas", isLogged, async (req, res, next)=>{
@@ -74,6 +78,15 @@ router.post('/admin-users/:userId/delete', isAdmin, async(req, res, next) => {
     }
 })
 
+router.post('/admin-users/:userId/autorize', isLogged, isAdmin, async(req, res, next) => {
+    const {userId} = req.params
+    try {
+        await User.findByIdAndUpdate(userId, {deleteUser: false}) 
+        res.redirect('/users/admin-profile')       
+    } catch (error) {
+        next(error)
+    }
+})
  
  router.post('/create', imageLoader.single("image"), async (req, res, next) => {
     const { name, weight, size, colour, price, description} = req.body

@@ -37,6 +37,13 @@ img {
   width: 100%;
   height: 100%;
   display: block;
+  transform: scale(1);
+  transition: 0.4s;
+}
+
+img:hover{
+  transform: scale(1.1);
+  transition: transform 0.4s;
 }
 
 .title{
@@ -85,14 +92,69 @@ nav a{
 
 .allBikes {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
   padding-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .banner{
   display: flex;
   justify-content: space-evenly;
-  padding: 1rem;
+  padding: 2rem 1rem;
   margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 760px){
+  .banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .banner button{
+    padding: 0.3rem 6rem;
+    width: 150px;
+    margin-bottom: 0.5rem;
+  }
+
+  .allBikes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bike-card {
+    border: 1px solid black;
+    /* transform: scale(1);
+    transition: 0.4s; */
+    margin-right: 2rem;
+    width: 320px;
+    border-radius: 2px;
+  }
+
+  .filter-container{
+    width: auto;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+  }
+  
+  .filter-container button {
+    padding: 0.3rem 0.6rem;
+    margin-inline: 0.75rem;
+    width: max-content;
+  }
+  
+}
+
+.error{
+  color: red;
 }
 
 .banner button{
@@ -108,20 +170,21 @@ nav a{
 
 .bike-card {
   border: 1px solid black;
-  transform: scale(1);
-  transition: 0.4s;
+  /* transform: scale(1);
+  transition: 0.4s; */
   margin-right: 2rem;
   width: 350px;
 }
 
-.bike-card:hover {
-  transform: scale(1.1);
-  transition: transform 0.4s;
+.description{
+  padding: 0.4rem;
 }
+
 
 .img-container {
   max-width: 400px;
   height: 200px;
+  overflow: hidden;
 }
 
 .bike-title{
@@ -175,7 +238,6 @@ nav a{
   display: inline-block;
 }
 
-
 .main-header {
   padding-bottom: 1.5rem;
 }
@@ -210,6 +272,10 @@ nav a{
   padding: 0.2rem 0.3rem;
 }
 
+.input-image{
+  padding: 0.2rem 0rem;
+}
+
 .register{
   padding-bottom: 1rem;
 }
@@ -219,15 +285,32 @@ nav a{
   border-radius: 3px;
 }
 
+.add-button{
+  padding: 0.5rem 0rem;
+}
+
+.description-label-add{
+  position: absolute;
+  left: 5%;
+  top: -5.5%;
+  z-index: 10;
+  background-color: white;
+  padding-inline: 0.2rem;
+  display: inline-block;
+}
+
 .filter-container{
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 2rem;
+  overflow-x: auto;
 }
 
 .filter-container button {
   padding: 0.5rem 1rem;
+  margin-inline: 0.75rem;
+  width: max-content;
 }
 
 #compradas{
@@ -239,6 +322,10 @@ nav a{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 1rem;
 }
 
-
+.errorMessage{
+  padding: 1rem 0;
+  color: red;
+}

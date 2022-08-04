@@ -1,6 +1,6 @@
 <h1 class="text-center register">Register</h1>
 
-<p>{{errorMessage}}</p>
+<p class="text-center error">{{errorMessage}}</p>
 
 <main class="main-form">
     <form action="/auth/register" class="register-form" method="post">
@@ -17,7 +17,7 @@
 
             <div class="input-container">
                 <p class="label">Password</p>
-                <input class="input" type="password" name="password">
+                <input id="input" class="input" type="password" name="password">
             </div>
 
     <button class="form-button">Create User</button>

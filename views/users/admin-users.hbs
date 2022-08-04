@@ -2,9 +2,15 @@
 <p>{{user.username}}</p>
 <p>{{user.email}}</p>
 <p>{{user.role}}</p>
-<form action="/users/admin-users/{{user._id}}/delete" method="POST">
-   <button class="btn btn-danger">Delete user</button>
+{{#if user.deleteUser}}
+<form action="/users/admin-users/{{user._id}}/autorize" method="POST">
+   <button class="btn btn-danger">Volver a autorizar</button>
 </form>
+{{else}}
+<form action="/users/admin-users/{{user._id}}/delete" method="POST">
+   <button class="btn btn-danger">Banear</button>
+</form>
+{{/if}}
 
 <a class="btn btn-primary" href="/users/admin-profile/">Users list</a>
   

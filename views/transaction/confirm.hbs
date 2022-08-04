@@ -1,28 +1,27 @@
-<h1>Confirm transaction</h1>
+<h1 class="text-center">Confirm transaction</h1>
 <p>{{errorMessage}}</p>
-<div>
 
-    <h2> Details of bike</h2>
-   {{!-- <img src="{{bike.image}}" alt="bike"> --}}
-   <h3> {{bike.name}}</h3>
-   <h4> {{bike.weight}}</h4>
-   <h4> {{bike.colour}}</h4>
-   <p> {{bike.description}}</p>
-   <h5>{{bike.price}}</h5>
-   <h5>Owner: {{bike.owner.username}}</h5>
+<main class="main-form">
+ 
+   <form class="register-form" action="/transaction/{{bike._id}}" method="post">
+        <div class="input-container">
+            <p class="label">Bici</p>
+            <input class="input" type="text" value="{{bike.name}}" readonly>
+        </div>
 
+        <div class="input-container">
+            <p class="label">Dueño</p>
+            <input class="input" type="text" value="{{bike.owner.username}}" name="owner" readonly>
+        </div>
 
-   <form action="/transaction/{{bike._id}}" method="post">
-    <label>Bike
-        <input type="text" value="{{bike.name}}" readonly>
-    </label>
+        <div class="input-container">
+            <p class="label">Precio</p>
+            <input class="input" type="text" value="{{bike.price}}" name="price" readonly>
+        </div>
 
-    <label> Owner
-        <input type="text" value="{{bike.owner.username}}" name="owner" readonly>
-    </label>
-
-   <button>Comprar</button>
+        <button class="form-button">Comprar</button>
    </form>
 
-</div>
+</main>
+
 

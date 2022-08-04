@@ -87,7 +87,7 @@ router.get('/:bikeId', isLogged, async (req, res, next) => {
    const { bikeId } = req.params
    try {
       const oneBike = await Bike.findById(bikeId).populate("owner")
-      res.render('bikes/oneBike.hbs', {oneBike})
+      res.render('bikes/oneBike.hbs', {oneBike, bikeId})
    } catch (error) {
       next(error)
    }

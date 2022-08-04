@@ -1,6 +1,5 @@
 const router = require("express").Router()
 const bcrypt = require("bcryptjs")
-const { request } = require("express")
 const User = require("../models/User.model")
 
 router.get("/register", (req, res, next)=> res.render("auth/register"))
@@ -8,6 +7,8 @@ router.get("/register", (req, res, next)=> res.render("auth/register"))
 router.post("/register", async (req, res, next)=>{
 
     const {username, email, password} = req.body
+
+    const usernameOk = username.trim().toLowerCase()
 
     if(username === "" || email === "" || password === ""){
         res.render("auth/register", {errorMessage: "Debes llenar todos los campos"})
@@ -38,7 +39,7 @@ router.post("/register", async (req, res, next)=>{
         const hashedPassword = await bcrypt.hash(password, salt)
 
         await User.create({
-            username,
+            username: usernameOk,
             email,
             password: hashedPassword
         })
@@ -58,28 +59,31 @@ router.post("/login", async (req, res, next)=>{
 
     const {password, username} = req.body
 
-    if(username === "" || password === ""){
-        res.render("auth/login", {errorMessage: "Debes rellenar todos los campos"})
-        return
-    }
-
-    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-    if(passwordRegex.test(password) === false){
-        res.render("auth/login", {errorMessage: "La contraseña debe tener al menos 8 caracteres, al menos 1 minúscula, 1 mayúscula y 1 número"})
-        return 
-    }
+    const usernameOk = username.trim().toLowerCase()
 
     try{
 
-        const foundUser = await User.findOne({username})
+        if(username === "" || password === ""){
+            res.render("auth/login", {errorMessage: "Debes rellenar todos los campos"})
+            return
+        }
+    
+        let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+        if(passwordRegex.test(password) === false){
+            res.render("auth/login", {errorMessage: "La contraseña debe tener al menos 8 caracteres, al menos 1 minúscula, 1 mayúscula y 1 número"})
+            return 
+        }
+
+        const foundUser = await User.findOne({username: usernameOk})
         if(foundUser === null){
             res.render("auth/login", {errorMessage: "Usuario no encontrado"})
             return
         }
 
-        const passwordValidated = bcrypt.compare(password, foundUser.password)
+        const passwordValidated = await bcrypt.compare(password, foundUser.password)
 
-        if(passwordValidated === false){
+        if(!passwordValidated){
+            console.log(passwordValidated)
             res.render("auth/login", {errorMessage: "Contraseña incorrecta"})
             return
         } 
@@ -93,7 +97,13 @@ router.post("/login", async (req, res, next)=>{
         req.app.locals.isUserActive = true
 
         req.session.save(()=>{
-            res.redirect("/users/profile")})
+
+            if(req.session.user.role === "admin"){
+                res.redirect("/users/admin-profile") 
+                return
+            }
+            res.redirect("/users/profile") 
+        })
 
     }
     catch(error){
