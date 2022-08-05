@@ -137,6 +137,10 @@ nav a{
 }
 
 @media screen and (max-width: 760px){
+  body{
+    padding: 0.25rem;
+  }
+
   .banner{
     display: flex;
     flex-direction: column;
