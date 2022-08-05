@@ -12,9 +12,8 @@
                 <div class="img-container">
                     <img src="{{this.image}}" alt="foto">
                 </div>
-                <h2>{{this.name}}</h2>
-                <h3>{{this.weight}}</h3>
-                <h3>{{this.price}} €</h3>
+                <h3 class="bike-title">{{this.name}}</h3>
+                <p class="info-container"><span class="bike-info">{{this.price}} €</span><span class="bike-info">{{this.weight}} kg</span><span class="bike-info">{{this.size}}</span></p>
                 <p>{{this.description}}</p>
             </div>
         {{/each}}

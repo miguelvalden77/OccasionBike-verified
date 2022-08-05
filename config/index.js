@@ -46,11 +46,11 @@ module.exports = (app) => {
     resave: false, 
     saveUninitialized: false,
     cookie: {
-     maxAge: 24 * 60 * 60 * 1000
+     maxAge: 24 * 60 * 60 * 1000 
     },
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/OccasionBike-verified",
-      ttl: 24 * 60 * 60
+      ttl: 24 * 60 * 60 
     })
   }))
 };
