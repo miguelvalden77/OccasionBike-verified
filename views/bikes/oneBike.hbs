@@ -13,23 +13,6 @@
     <p class="info-container"><span class="bike-info">{{oneBike.price}} €</span><span class="bike-info">{{oneBike.weight}} kg</span><span class="bike-info">{{oneBike.size}}</span></p>
    <p class="description"> {{oneBike.description}}</p>
    <p class="text-center">Owner: {{oneBike.owner.username}}</p>
- 
-  <div>
-    <form action="/comments/{{oneBike._id}}/create" method="post">
-      <p style="text-align: center"> <textarea style="block" name="message" placeholder="leave your comment here"></textarea>
-      <button style="display: block; margin: auto; padding: 0.3rem 0.6rem">Send</button></p>
-    </form>
-  </div>
-  <div style="padding-top: 0.5rem; margin-left: 0.75rem">
-      {{#each allCommentsCloned}}
-        <p style="display: inline-block; margin-right: 0.25rem">{{this.creator.username}} wrote: {{this.text}}</p>
-        {{#if this.isMyComment }}
-        <form action="/comments/{{this._id}}/{{this.bike}}/delete" method="post" style="display: inline">
-          <button style="color: red; border: none; background-color: inherit;">delete</button>
-        </form>
-        {{/if}}
-    {{/each}}
-  </div>
 
    {{#if oneBike.isSold}}
       <p class="text-center">Vendida</p>
@@ -42,6 +25,25 @@
     {{/if}}
    </div>
 </article>
+
+<section class="comments">
+  <div style="padding-top: 0.5rem; margin-left: 0.75rem">
+      {{#each allCommentsCloned}}
+        <p class="comment" style="display: inline-block; margin-right: 0.25rem">{{this.creator.username}} wrote: {{this.text}}</p>
+        {{#if this.isMyComment }}
+        <form action="/comments/{{this._id}}/{{this.bike}}/delete" method="post" style="display: inline">
+          <button style="color: red; border: none; background-color: inherit;">delete</button>
+        </form>
+        {{/if}}
+    {{/each}}
+  </div>
+  <div class="comment-form">
+    <form action="/comments/{{oneBike._id}}/create" method="post">
+      <p style="text-align: center"> <textarea style="block" name="message" placeholder="leave your comment here"></textarea>
+      <button style="display: block; margin: auto; padding: 0.3rem 0.6rem">Send</button></p>
+    </form>
+  </div>
+</section>
 
 
 </main>
