@@ -1,4 +1,4 @@
-<h1 class="text-center register">Login</h1>
+<h1 class="text-center register">Identificación</h1>
 
 <p class="errorMessage text-center">{{errorMessage}}</p>
 
@@ -6,18 +6,21 @@
     <form class="register-form" action="/auth/login" method="post">
 
     <div class="input-container">
-        <p class="label">Username</p>
+        <p class="label">Usuario</p>
         <input class="input" type="text" name="username">
     </div>
 
     <div class="input-container">
-        <p class="label">Password</p>
+        <p class="label">Contraseña</p>
         <input class="input" type="password" name="password">
     </div>
     
 
-    <button class="form-button">Enter</button>
+    <button class="form-button">Entrar</button>
 
     </form>
 </main>
 
+<script>
+    document.title = "Login"
+</script>

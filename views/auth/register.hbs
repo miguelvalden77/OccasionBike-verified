@@ -1,4 +1,4 @@
-<h1 class="text-center register">Register</h1>
+<h1 class="text-center register">Registro</h1>
 
 <p style="padding-bottom: 0.75rem;" class="text-center error">{{errorMessage}}</p>
 
@@ -6,7 +6,7 @@
     <form action="/auth/register" class="register-form" method="post">
 
             <div class="input-container">
-                <p class="label">Username</p>
+                <p class="label">Usuario</p>
                 <input class="input" type="text" name="username">
             </div>
 
@@ -16,11 +16,15 @@
             </div>
 
             <div class="input-container">
-                <p class="label">Password</p>
+                <p class="label">Contraseña</p>
                 <input id="input" class="input" type="password" name="password">
             </div>
 
-    <button class="form-button">Create User</button>
+    <button class="form-button">Crear usuario</button>
 
     </form>
 </main>
+
+<script>
+    document.title = "Registro"
+</script>

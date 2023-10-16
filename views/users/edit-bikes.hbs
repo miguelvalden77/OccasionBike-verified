@@ -1,8 +1,12 @@
+<script>
+    document.title = "Editar"
+</script>
+
 <div class="banner flex">
     <a href="/users/profile"><button>Volver al perfil</button></a>
 </div>
 
-<h1 class="text-center">Edit bike</h1>
+<h1 class="text-center">Editar bici</h1>
   
 <main class="main-form">
 
@@ -28,12 +32,12 @@
   </div>
 
   <div class="input-container">
-    <p class="label">Color </p>
+    <p class="label">Color</p>
     <input type="text" name="colour" class="input" value="{{bike.colour}}">
   </div>
 
   <div class="input-container">
-    <p class="label">Precio </p>
+    <p class="label">Precio</p>
     <input type="number" name="price" class="input" value="{{bike.price}}">
   </div>
   
@@ -42,7 +46,7 @@
     <textarea name="description" cols="20" rows="5" class="input" maxlength="150">{{bike.description}}</textarea>
   </div>
 
-  <button>Edit bike</button>
+  <button>Editar bici</button>
 
 </form>
 

@@ -1,3 +1,7 @@
+<script>
+    document.title = "Perfil"
+</script>
+
 <h1 class="main-title text-center">Bienvenid@ a tu perfil {{user.username}}</h1>
  {{#if user.deleteUser}}
     <p class="text-center error">{{banMessage}}</p>
@@ -25,9 +29,9 @@
                     <small class="text-center">Vendida</small>
                 {{/if}}
             <div class="button-container-down">
-                <button class="details-button"> <a href="/users/{{this._id}}/edit">Update your bike</a></button>
+                <button class="details-button"> <a href="/users/{{this._id}}/edit">Actualizar</a></button>
             <form action="/users/{{this._id}}/delete" method="post">
-                <button class="details-button delete">Delete the bike</button>
+                <button class="details-button delete">Borrar</button>
             </div>
             </form>
             </div>

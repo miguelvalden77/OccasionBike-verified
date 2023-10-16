@@ -2,48 +2,57 @@
 
 {{!-- search --}}
 
+<script>
+  document.title = "{{oneBike.name}}"
+</script>
+
 <main class="oneBike">
-<h1 class="title"> Details of bike</h1>
+  <h1 class="title"> Detalles de la bici</h1>
 
-<article class="bike-card">
-  <div class="img-container">
-    <img src="{{oneBike.image}}" alt="bike">
-  </div>
-   <h3 class="bike-title text-center"> {{oneBike.name}}</h3>
-    <p class="info-container"><span class="bike-info">{{oneBike.price}} €</span><span class="bike-info">{{oneBike.weight}} kg</span><span class="bike-info">{{oneBike.size}}</span></p>
-   <p class="description"> {{oneBike.description}}</p>
-   <p class="text-center">Owner: {{oneBike.owner.username}}</p>
+  <article class="bike-card">
+    <div class="img-container">
+      <img src="{{oneBike.image}}" alt="bike">
+    </div>
+    <h3 class="bike-title text-center"> {{oneBike.name}}</h3>
+    <p class="info-container"><span class="bike-info">{{oneBike.price}} €</span><span
+        class="bike-info">{{oneBike.weight}} kg</span><span class="bike-info">{{oneBike.size}}</span></p>
+    <p class="description"> {{oneBike.description}}</p>
+    <p class="text-center">Propietari@: {{oneBike.owner.username}}</p>
 
-   {{#if oneBike.isSold}}
-      <p class="text-center">Vendida</p>
-   {{/if}}
-   <div class="button-container">
     {{#if oneBike.isSold}}
-    <button disabled class="details-button">Transferencia</button>
-    {{else}}
-    <a class="details-anchor" href="/transaction/{{bikeId}}"> <button class="details-button">Transferencia</button> </a>
+    <p class="text-center">Vendida</p>
     {{/if}}
-   </div>
-</article>
+    <div class="button-container">
+      {{#if oneBike.isSold}}
+      <button disabled class="details-button">Transferencia</button>
+      {{else}}
+      <a class="details-anchor" href="/transaction/{{bikeId}}"> <button class="details-button">Transferencia</button>
+      </a>
+      {{/if}}
+    </div>
+  </article>
 
-<section class="comments">
-  <div style="padding-top: 0.5rem; margin-left: 0.75rem">
+  <section class="comments">
+    <div class="comment-form">
+      <form action="/comments/{{oneBike._id}}/create" method="post">
+        <p style="text-align: center"> <textarea style="block" name="message"
+            placeholder="leave your comment here"></textarea>
+          <button style="display: block; margin: auto; padding: 0.3rem 0.6rem">Enviar</button>
+        </p>
+      </form>
+    </div>
+    <div style="padding-top: 0.5rem; margin-left: 0.75rem">
       {{#each allCommentsCloned}}
-        <p class="comment" style="display: inline-block; margin-right: 0.25rem">{{this.creator.username}} wrote: {{this.text}}</p>
-        {{#if this.isMyComment }}
-        <form action="/comments/{{this._id}}/{{this.bike}}/delete" method="post" style="display: inline">
-          <button style="color: red; border: none; background-color: inherit;">delete</button>
-        </form>
-        {{/if}}
-    {{/each}}
-  </div>
-  <div class="comment-form">
-    <form action="/comments/{{oneBike._id}}/create" method="post">
-      <p style="text-align: center"> <textarea style="block" name="message" placeholder="leave your comment here"></textarea>
-      <button style="display: block; margin: auto; padding: 0.3rem 0.6rem">Send</button></p>
-    </form>
-  </div>
-</section>
+      <p class="comment" style="margin-right: 0.25rem">{{this.creator.username}} escribió:
+        {{this.text}}</p>
+      {{#if this.isMyComment }}
+      <form action="/comments/{{this._id}}/{{this.bike}}/delete" method="post" style="display: inline">
+        <button style="color: red; border: none; background-color: inherit;">borrar</button>
+      </form>
+      {{/if}}
+      {{/each}}
+    </div>
+  </section>
 
 
 </main>

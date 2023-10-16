@@ -21,19 +21,19 @@
             <img src="/images/logo.jpg" alt="logo">
          </div>
         <nav>
-         <a href="/">Home</a>
+         <a href="/">Inicio</a>
          {{#if isUserActive}}
-            <a href="/bikes/allBikes">Bikes</a>
+            <a href="/bikes/allBikes">Bicis</a>
             {{#if isUserAdmin}}
                <a href="/users/admin-profile">Admin</a>
             {{else}}
                <a href="/users/profile">Perfil</a>
             {{/if}}
-            <a href="/auth/logout">Log out</a>
+            <a href="/auth/logout">Salir</a>
          {{else}}
-            <a href="/auth/login">Login</a>
-            <a href="/auth/register">Register</a>
-            <a href="/bikes/allBikes">Bikes</a>
+            <a href="/auth/login">Entra</a>
+            <a href="/auth/register">Regístrate</a>
+            <a href="/bikes/allBikes">Bicis</a>
          {{/if}}
         </nav>
       </header>
